@@ -32,30 +32,34 @@ chmod +x build-and-zip.sh
    将 `magic-ai-web-deploy.zip` 上传到你的服务器。
 
 2. **解压文件**
+
    ```bash
    unzip magic-ai-web-deploy.zip
    ```
 
 3. **进入目录**
+
    ```bash
    cd web-dist
    ```
 
 4. **启动服务**
-   
    直接启动：
+
    ```bash
    # 添加执行权限
    chmod +x start.sh
    ./start.sh
    ```
-   
+
    或者直接运行：
+
    ```bash
    node server.js
    ```
 
    默认端口为 **3000**。如果要修改端口，例如修改为 8080：
+
    ```bash
    PORT=8080 node server.js
    ```
@@ -65,12 +69,14 @@ chmod +x build-and-zip.sh
 为了让服务在后台持续运行并在崩溃后自动重启，建议使用 PM2。
 
 1. **安装 PM2**
+
    ```bash
    npm install -g pm2
    ```
 
 2. **启动服务**
    进入 `web-dist` 目录后运行：
+
    ```bash
    pm2 start server.js --name "magic-ai"
    ```
@@ -84,11 +90,14 @@ chmod +x build-and-zip.sh
 ## 常见问题
 
 ### 1. 缺少依赖模块？
+
 Standalone 模式已经包含了所有运行时的 `node_modules`，通常不需要再次执行 `npm install`。如果报错提示缺少模块，请检查是否完整复制了 `web-dist` 目录下的所有文件。
 
 ### 2. 图片无法加载？
+
 请确保 `.next/static` 和 `public` 文件夹已正确复制到服务器上的相应位置（脚本会自动处理这些）。
 
 ### 3. 如何配置 API Key？
+
 本项目主要配置（API Key、Base URL 等）存储在用户浏览器的 LocalStorage 中，服务端不需要配置。
 部署完成后，直接在浏览器打开网站，点击左下角的【密钥设置】输入 API 信息即可。
